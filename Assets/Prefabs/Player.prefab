@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6898788693929736621}
   - component: {fileID: 6898788693929736623}
   - component: {fileID: 6898788693929736620}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: PlayerModel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -99,14 +99,16 @@ GameObject:
   - component: {fileID: 6898788693978478294}
   - component: {fileID: 6898788693978478289}
   - component: {fileID: 6898788693978478291}
-  - component: {fileID: 6898788693978478288}
   - component: {fileID: 2020120080356384735}
   - component: {fileID: -4819699247941495420}
   - component: {fileID: 3583538525110041789}
   - component: {fileID: 3724774601633816935}
-  m_Layer: 0
+  - component: {fileID: 898922900635473579}
+  - component: {fileID: 8387889455092638436}
+  - component: {fileID: 2098891086826049117}
+  m_Layer: 8
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -298,18 +300,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f12e94e6455ba8d2b6622f44635e77e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &6898788693978478288
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6898788693978478312}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8b7423bdc82fcfda69d120227a48c257, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0
+  weapon:
+    name: machine gune
+    damage: 40
+    range: 100
+  mask:
+    serializedVersion: 2
+    m_Bits: 567
+  cam: {fileID: 6898788695506600875}
 --- !u!114 &2020120080356384735
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -347,6 +348,8 @@ MonoBehaviour:
   - {fileID: 6898788693978478293}
   - {fileID: 6898788695506600875}
   - {fileID: 6898788695506600872}
+  - {fileID: 6898788693978478291}
+  remoteLayerName: RemotePlayer
 --- !u!114 &3583538525110041789
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -415,6 +418,75 @@ MonoBehaviour:
   positionPrecision: 0.01
   scalePrecision: 0.01
   timelineOffset: 0
+--- !u!143 &898922900635473579
+CharacterController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6898788693978478312}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Height: 2
+  m_Radius: 0.5
+  m_SlopeLimit: 45
+  m_StepOffset: 0.3
+  m_SkinWidth: 0.08
+  m_MinMoveDistance: 0.001
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &8387889455092638436
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6898788693978478312}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f74aedd71d9a4f55b3ce499326d45fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0
+  target: {fileID: 6898788693978478315}
+  clientAuthority: 0
+  syncPosition: 1
+  syncRotation: 1
+  syncScale: 0
+  interpolatePosition: 1
+  interpolateRotation: 1
+  interpolateScale: 1
+  showGizmos: 0
+  showOverlay: 0
+  overlayColor: {r: 0, g: 0, b: 0, a: 0.5}
+  onlySyncOnChange: 1
+  bufferResetMultiplier: 5
+  positionSensitivity: 0.01
+  rotationSensitivity: 0.01
+  scaleSensitivity: 0.01
+  timelineOffset: 0
+--- !u!114 &2098891086826049117
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6898788693978478312}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ca1e733735427c889640d78a1901be1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0
+  maxHealth: 100
+  disableOnDeath:
+  - {fileID: 6898788693978478291}
+  - {fileID: 6898788693978478292}
 --- !u!1 &6898788694117907978
 GameObject:
   m_ObjectHideFlags: 0
@@ -426,7 +498,7 @@ GameObject:
   - component: {fileID: 6898788694117908085}
   - component: {fileID: 6898788694117908086}
   - component: {fileID: 6898788694117908087}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cube (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -507,7 +579,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6898788694749395081}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: JetOrigin
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -539,7 +611,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6898788694987298832}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Gun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -573,7 +645,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6898788695309176940}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Graphics
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -607,7 +679,7 @@ GameObject:
   - component: {fileID: 6898788695368947625}
   - component: {fileID: 6898788695368947626}
   - component: {fileID: 6898788695368947627}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -690,7 +762,7 @@ GameObject:
   - component: {fileID: 6898788695506600873}
   - component: {fileID: 6898788695506600875}
   - component: {fileID: 6898788695506600872}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Camera
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -775,7 +847,7 @@ GameObject:
   - component: {fileID: 6898788695560639315}
   - component: {fileID: 6898788695560639325}
   - component: {fileID: 6898788695560639314}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: JetModel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -858,7 +930,7 @@ GameObject:
   - component: {fileID: 6898788695871913615}
   - component: {fileID: 6898788695871913608}
   - component: {fileID: 6898788695871913609}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cube (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
