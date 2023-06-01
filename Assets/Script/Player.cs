@@ -20,6 +20,15 @@ public class Player : NetworkBehaviour
     private bool[] wasEnableOnStart;
 
     public void Setup() {
+        CmdBroadcastNewPlayerSetup();
+    }
+    [Command(requiresAuthority=true)]
+    private void CmdBroadcastNewPlayerSetup(){
+        RpcSetupPlayerOnAllClient();
+    }
+
+    [ClientRpc]
+    private void RpcSetupPlayerOnAllClient(){
         wasEnableOnStart = new bool[disableOnDeath.Length];
         for (int i = 0; i < disableOnDeath.Length; i++)
         {
@@ -27,11 +36,12 @@ public class Player : NetworkBehaviour
         }
         setDefaults();
     }
+
     private void setDefaults(){
         isDead = false;
         curantHealth = maxHealth;
         for (int i = 0; i < disableOnDeath.Length; i++)
-        {
+        { 
             disableOnDeath[i].enabled = wasEnableOnStart[i];
         }
         Collider collider = GetComponent<Collider>();
@@ -42,6 +52,7 @@ public class Player : NetworkBehaviour
     }
     private IEnumerator Respawn(){
         yield return new WaitForSeconds(GameManager.instance.matchSettings.respawnTimer);
+
         setDefaults();
         Transform spawnPoint = NetworkManager.singleton.GetStartPosition();
         transform.position = spawnPoint.position;

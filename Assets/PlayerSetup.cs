@@ -23,8 +23,8 @@ public class PlayerSetup : NetworkBehaviour
             {
                 sceneCamera.gameObject.SetActive(false);
             }
-        }
-        GetComponent<Player>().Setup();
+            GetComponent<Player>().Setup();
+        }        
     }
 
     public override void OnStartClient()
@@ -47,10 +47,14 @@ public class PlayerSetup : NetworkBehaviour
 
     private void OnDisable()
     {
-        if (sceneCamera != null)
+        if (isLocalPlayer)
         {
-            sceneCamera.gameObject.SetActive(true);
+            if (sceneCamera != null)
+            {
+                sceneCamera.gameObject.SetActive(true);
+            }
         }
+
         GameManager.UnregisterPlayer(transform.name);
     }
 }
