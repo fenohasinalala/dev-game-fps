@@ -9,6 +9,8 @@ public class PlayerShoot : NetworkBehaviour
     private LayerMask mask;
     [SerializeField]
     private Camera cam;
+    [SerializeField]
+    private LineRenderer line;
     void Start()
     {
         if (cam == null)
@@ -35,6 +37,15 @@ public class PlayerShoot : NetworkBehaviour
                 CmdPlayerShoot(hit.collider.name, weapon.damage);
             }
         }
+        LineRenderer lineRenderer = line.GetComponent<LineRenderer>();
+        lineRenderer.enabled = true;
+        Invoke("ViewFire",0.2f);
+        //lineRenderer.enabled = false;
+    }
+
+    private void ViewFire (){
+        LineRenderer lineRenderer = line.GetComponent<LineRenderer>();
+        lineRenderer.enabled = false;
     }
 
     [Command]
@@ -42,5 +53,6 @@ public class PlayerShoot : NetworkBehaviour
         Debug.Log(playerId + "a été toucher");
         Player player = GameManager.GetPlayer(playerId);
         player.RpcTakeDamage(damage);
+
     }
 }

@@ -19,6 +19,8 @@ public class Player : NetworkBehaviour
     private Behaviour[] disableOnDeath;
     private bool[] wasEnableOnStart;
 
+    [SyncVar]
+    public string userName = "Player";
     public void Setup() {
         CmdBroadcastNewPlayerSetup();
     }
@@ -36,6 +38,9 @@ public class Player : NetworkBehaviour
         }
         setDefaults();
     }
+
+
+
 
     private void setDefaults(){
         isDead = false;
